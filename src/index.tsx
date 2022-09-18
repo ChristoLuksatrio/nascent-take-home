@@ -5,8 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-console.log("this runs");
-
 const client = new ApolloClient({
   uri: process.env.REACT_APP_MONGOURI ?? "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
