@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "../components/Button";
+import { TextField, Autocomplete } from "@mui/material";
 
 const Choose = () => {
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<any>([]);
   const [pokemonData, setPokemonData] = useState<any>(undefined);
-  const [searchInput, setSearchInput] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   const getPokemon = async (pokemon: string) => {
     try {
@@ -18,11 +19,25 @@ const Choose = () => {
     }
   };
 
-  const getPokemonPreview = async () => {
+  const getPokemonList = async () => {
     try {
-      const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=5");
-      const options = res?.data?.results?.map((data: any) => data.name);
+      const res = await axios.get(
+        "https://pokeapi.co/api/v2/pokemon?limit=1154&offset=0"
+      );
+      const options = res?.data?.results?.map((data: any) => {
+        return { label: data.name };
+      });
       setOptions(options);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getPokemonSuggestions = async () => {
+    try {
+      const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=4");
+      const data = res?.data?.results;
+      setSuggestions(data);
     } catch (e) {
       console.log(e);
     }
@@ -35,7 +50,8 @@ const Choose = () => {
   };
 
   useEffect(() => {
-    getPokemonPreview();
+    getPokemonList();
+    getPokemonSuggestions();
   }, []);
 
   return (
@@ -67,37 +83,33 @@ const Choose = () => {
           </div>
         </div>
       ) : null}
+
       <div className="grid grid-cols-3 gap-2 mb-4">
-        {options.map((option, index) => (
+        {suggestions?.map((suggestion: any, index: number) => (
           <div
             key={index}
             className="flex button-active items-center h-12 px-4"
-            onClick={() => getPokemon(option)}
+            onClick={() => getPokemon(suggestion.name)}
           >
             <div className="w-10 mr-2">
               <img
                 className="h-auto w-auto"
-                src={`https://img.pokemondb.net/sprites/black-white/normal/${option}.png`}
-                alt={option}
+                src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.name}.png`}
+                alt={suggestion.name}
               />
             </div>
-            <p>{option}</p>
+            <p>{suggestion.name}</p>
           </div>
         ))}
       </div>
       <p>Can't find the pokemon you're looking for? Search for it below!</p>
-      <div className="flex w-full mb-2">
-        <input
-          className="mb-2 mr-2"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <Button
-          text="Search"
-          disableLink={true}
-          onClick={() => getPokemon(searchInput)}
-        />
-      </div>
+      <Autocomplete
+        options={options}
+        onChange={(_event: any, newValue: any | null) => {
+          getPokemon(newValue.label);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
       <Button
         disabled={!pokemonData}
         onClick={() => selectPokemon(pokemonData.name)}
