@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
-import { GET_SUBMISSIONS } from "./graphql/Query";
 // import { ADD_SUBMISSION } from "./graphql/Mutation";
-import { useQuery } from "@apollo/client";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Registration from "./pages/Registration";
 
 function App() {
-  const { loading, error, data, networkStatus } = useQuery(GET_SUBMISSIONS, {
-    notifyOnNetworkStatusChange: true,
-  });
   // const [addSubmission] = useMutation(ADD_SUBMISSION);
 
   // const clickerino = () => {
@@ -23,18 +21,14 @@ function App() {
   //   });
   // };
 
-  if (loading) {
-    console.log("loading happened");
-    return <p>loading</p>;
-  }
-  if (error) {
-    return <div>Error</div>;
-  }
   return (
-    <div className="App">
-      {data?.getSubmissions.map((submission: any, index: number) => (
-        <div key={index}>{submission.firstName}</div>
-      ))}
+    <div className="flex flex-col items-center h-screen bg-gray-800 text-white pt-16">
+      <div className="card bg-amber-100 p-4 border-2 border-amber-800 rounded-lg text-black">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Registration />} />
+        </Routes>
+      </div>
     </div>
   );
 }
