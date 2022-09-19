@@ -17,7 +17,7 @@ export default function Registration() {
     window.localStorage.setItem("formInput", JSON.stringify(formInput));
   }, [formInput]);
 
-  const registrationFormInput = Object.values(formInput).slice(0, 3);
+  const registrationFormInput = Object.values(formInput).slice(0, 4);
 
   const checkInput = Object.values(registrationFormInput).every(
     (value) => value
