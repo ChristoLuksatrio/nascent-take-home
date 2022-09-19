@@ -36,11 +36,11 @@ const Choose = () => {
 
   useEffect(() => {
     getPokemonPreview();
-  }, [options]);
+  }, []);
 
   return (
     <div className="flex flex-col">
-      <p>Choose your pokemon</p>
+      <p>Choose your Pokemon</p>
       {pokemonData ? (
         <div className="flex">
           <img
