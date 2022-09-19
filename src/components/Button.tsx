@@ -5,15 +5,31 @@ interface ButtonProps {
   text: String;
   path: To;
   className?: String;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, path, className }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  path,
+  className,
+  disabled,
+  type,
+}) => {
+  const disableClick = (event: any) => {
+    if (disabled) {
+      event.preventDefault();
+    }
+  };
   return (
     <Link
-      className={`${className} button bg-amber-500 hover:bg-amber-400 shadow-md text-amber-900 border-2 border-amber-900 rounded-md text-center px-4`}
+      className={`${className} ${
+        disabled ? "button-disabled" : "button-active"
+      } text-center px-4`}
       to={path}
+      onClick={disableClick}
     >
-      {text}
+      <button type={type}>{text}</button>
     </Link>
   );
 };

@@ -24,6 +24,14 @@ code {
   min-height: 24rem;
 }
 
-.button {
+.button-active {
+  @apply bg-amber-500 hover:bg-amber-400 text-amber-900 border-2 border-amber-900 rounded-md;
+}
+
+.button-active {
   box-shadow: -2px 2px #4f220a;
+}
+
+.button-disabled {
+  @apply text-gray-800 bg-gray-600 border-2 border-gray-800 rounded-md cursor-default;
 }

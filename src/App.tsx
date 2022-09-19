@@ -4,6 +4,9 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
+import Choose from "./pages/Choose";
+import Verify from "./pages/Verify";
+import Success from "./pages/Success";
 
 function App() {
   // const [addSubmission] = useMutation(ADD_SUBMISSION);
@@ -27,6 +30,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Registration />} />
+          <Route path="/choose" element={<Choose />} />
+          <Route path="/verify" element={<Verify />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </div>
     </div>
