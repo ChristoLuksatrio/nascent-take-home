@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 
 export default function Registration() {
-  const beginningInput = JSON.parse(
-    window.localStorage.getItem("formInput") || ""
-  ) || {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    address: "",
-    pokemon: "",
-  };
+  const beginningInput = window.localStorage.getItem("formInput")
+    ? JSON.parse(window.localStorage.getItem("formInput") || "")
+    : {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        pokemon: "",
+      };
   const [formInput, setFormInput] = useState(beginningInput);
 
   useEffect(() => {
