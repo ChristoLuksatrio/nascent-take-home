@@ -4,10 +4,12 @@ import useSound from "use-sound";
 
 interface ButtonProps {
   text: String;
-  path: To;
+  path?: To;
   className?: String;
   disabled?: boolean;
+  disableLink?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,12 +17,14 @@ const Button: React.FC<ButtonProps> = ({
   path,
   className,
   disabled,
+  disableLink,
   type,
+  onClick,
 }) => {
   const clickSFX = require("../assets/click.mp3");
   const [playClickSFX] = useSound(clickSFX);
   const handleClick = (event: any) => {
-    if (disabled) {
+    if (disabled || disableLink) {
       event.preventDefault();
     }
     playClickSFX();
@@ -30,10 +34,12 @@ const Button: React.FC<ButtonProps> = ({
       className={`${className} ${
         disabled ? "button-disabled" : "button-active"
       } text-center px-4`}
-      to={path}
+      to={path || "/"}
       onClick={handleClick}
     >
-      <button type={type}>{text}</button>
+      <button onClick={onClick} type={type}>
+        {text}
+      </button>
     </Link>
   );
 };

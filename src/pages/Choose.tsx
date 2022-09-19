@@ -6,17 +6,18 @@ const Choose = () => {
   const [options, setOptions] = useState([]);
   const [pokemonData, setPokemonData] = useState<any>(undefined);
   const [searchInput, setSearchInput] = useState("");
+
   const getPokemon = async (pokemon: string) => {
     try {
       const res = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
       );
       setPokemonData(res.data);
-      console.log("res is ,", res);
     } catch (e) {
       console.log(e);
     }
   };
+
   const getPokemonPreview = async () => {
     try {
       const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=5");
@@ -27,9 +28,16 @@ const Choose = () => {
     }
   };
 
+  const selectPokemon = (pokemon: string) => {
+    const input = JSON.parse(window.localStorage.getItem("formInput") || "");
+    input["pokemon"] = pokemon;
+    window.localStorage.setItem("formInput", JSON.stringify(input));
+  };
+
   useEffect(() => {
     getPokemonPreview();
   }, [options]);
+
   return (
     <div className="flex flex-col">
       <p>Choose your pokemon</p>
@@ -50,8 +58,8 @@ const Choose = () => {
             </div>
             <div>
               <p>Stats</p>
-              {pokemonData.stats.map((data: any) => (
-                <p>
+              {pokemonData.stats.map((data: any, index: number) => (
+                <p key={index}>
                   {data.stat.name}:{data.base_stat}
                 </p>
               ))}
@@ -64,6 +72,7 @@ const Choose = () => {
           <div
             key={index}
             className="flex button-active items-center h-12 px-4"
+            onClick={() => getPokemon(option)}
           >
             <div className="w-10 mr-2">
               <img
@@ -77,15 +86,23 @@ const Choose = () => {
         ))}
       </div>
       <p>Can't find the pokemon you're looking for? Search for it below!</p>
-      <div className="flex w-full">
+      <div className="flex w-full mb-2">
         <input
-          className="mb-2"
+          className="mb-2 mr-2"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button onClick={() => getPokemon(searchInput)}>Search</button>
+        <Button
+          text="Search"
+          disableLink={true}
+          onClick={() => getPokemon(searchInput)}
+        />
       </div>
-      <Button text="I Choose You!" path="/verify" />
+      <Button
+        onClick={() => selectPokemon(pokemonData.name)}
+        text="I Choose You!"
+        path="/verify"
+      />
     </div>
   );
 };
