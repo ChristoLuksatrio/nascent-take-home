@@ -22,18 +22,24 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
 }) => {
   const clickSFX = require("../assets/click.mp3");
+  const failSFX = require("../assets/fail.mp3");
   const [playClickSFX] = useSound(clickSFX);
+  const [playFailSFX] = useSound(failSFX);
   const handleClick = (event: any) => {
     if (disabled || disableLink) {
       event.preventDefault();
     }
-    playClickSFX();
+    if (disabled) {
+      playFailSFX();
+    } else {
+      playClickSFX();
+    }
   };
   return (
     <Link
       className={`${className} ${
         disabled ? "button-disabled" : "button-active"
-      } text-center px-4`}
+      } text-center px-4 cursor-pointer`}
       to={path || "/"}
       onClick={handleClick}
     >
