@@ -31,11 +31,14 @@ const Choose = () => {
       <p>Choose your pokemon</p>
       <div className="grid grid-cols-3 gap-2 mb-4">
         {options.map((option, index) => (
-          <div>
-            <img
-              src={`https://img.pokemondb.net/sprites/black-white/normal/${option}.png`}
-              alt={option}
-            />
+          <div className="flex button-active items-center h-12 px-4">
+            <div className="w-10 mr-2">
+              <img
+                className="h-auto w-auto"
+                src={`https://img.pokemondb.net/sprites/black-white/normal/${option}.png`}
+                alt={option}
+              />
+            </div>
             <p key={index}>{option}</p>
           </div>
         ))}

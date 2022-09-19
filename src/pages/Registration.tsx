@@ -9,6 +9,7 @@ export default function Registration() {
     lastName: "",
     phoneNumber: "",
     address: "",
+    pokemon: "",
   };
   const [formInput, setFormInput] = useState(beginningInput);
 
