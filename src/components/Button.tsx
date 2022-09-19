@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, To } from "react-router-dom";
+import useSound from "use-sound";
 
 interface ButtonProps {
   text: String;
@@ -16,10 +17,13 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   type,
 }) => {
-  const disableClick = (event: any) => {
+  const clickSFX = require("../assets/click.mp3");
+  const [playClickSFX] = useSound(clickSFX);
+  const handleClick = (event: any) => {
     if (disabled) {
       event.preventDefault();
     }
+    playClickSFX();
   };
   return (
     <Link
@@ -27,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
         disabled ? "button-disabled" : "button-active"
       } text-center px-4`}
       to={path}
-      onClick={disableClick}
+      onClick={handleClick}
     >
       <button type={type}>{text}</button>
     </Link>
