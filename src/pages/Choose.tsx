@@ -99,6 +99,7 @@ const Choose = () => {
         />
       </div>
       <Button
+        disabled={!pokemonData}
         onClick={() => selectPokemon(pokemonData.name)}
         text="I Choose You!"
         path="/verify"
