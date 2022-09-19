@@ -56,7 +56,7 @@ const Choose = () => {
 
   return (
     <div className="flex flex-col">
-      <p>Choose your Pokemon</p>
+      <p className="text-xl">Choose your Pokemon</p>
       {pokemonData ? (
         <div className="flex">
           <img
