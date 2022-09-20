@@ -13,8 +13,8 @@ const Choose = () => {
       const res = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
       );
-      console.log("res.data", res.data);
       setPokemonData(res.data);
+      selectPokemon(res.data.name);
     } catch (e) {
       console.log(e);
     }
@@ -134,7 +134,6 @@ const Choose = () => {
       />
       <Button
         disabled={!pokemonData}
-        onClick={() => selectPokemon(pokemonData.name)}
         text="I Choose You!"
         path="/verify"
         className="mt-auto"
