@@ -49,3 +49,16 @@ code {
 .MuiAutocomplete-option {
   font-family: "Press Start 2P", cursive !important;
 }
+
+table {
+  font-size: 0.5rem;
+}
+
+th {
+  @apply bg-amber-400;
+}
+
+th,
+td {
+  @apply border-2 border-amber-900;
+}
