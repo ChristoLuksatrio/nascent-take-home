@@ -19,7 +19,7 @@ const Verify = () => {
         <p key={index}>
           {camelCaseToTitleCase(key)}:{formInput[key]}
           <Link
-            to={key == "pokemon" ? "/choose" : "/signup"}
+            to={key === "pokemon" ? "/choose" : "/signup"}
             className="ml-2 w-4 inline-block"
           >
             <img className="h-auto w-auto" src={Pencil} alt="Edit Icon" />

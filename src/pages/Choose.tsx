@@ -51,6 +51,12 @@ const Choose = () => {
   };
 
   useEffect(() => {
+    const localStorage = JSON.parse(
+      window.localStorage.getItem("formInput") || ""
+    );
+    if (localStorage?.pokemon) {
+      getPokemon(localStorage.pokemon);
+    }
     getPokemonList();
     getPokemonSuggestions();
   }, []);
