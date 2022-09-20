@@ -56,7 +56,7 @@ const Choose = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       <p className="text-xl mb-1">Choose your Pokemon</p>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       {pokemonData ? (
@@ -131,6 +131,7 @@ const Choose = () => {
         onClick={() => selectPokemon(pokemonData.name)}
         text="I Choose You!"
         path="/verify"
+        className="mt-auto"
       />
     </div>
   );

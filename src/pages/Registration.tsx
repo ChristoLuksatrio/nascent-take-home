@@ -24,7 +24,9 @@ export default function Registration() {
   );
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
+      <p className="text-xl mb-1">Details</p>
+      <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       <form className="flex flex-col">
         <p>First Name:</p>
         <input
@@ -64,6 +66,7 @@ export default function Registration() {
           type="submit"
           text="CONTINUE"
           path="/choose"
+          className="mt-auto"
         />
       </form>
     </div>
