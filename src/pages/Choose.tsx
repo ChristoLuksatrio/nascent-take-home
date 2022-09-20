@@ -66,8 +66,8 @@ const Choose = () => {
       <p className="text-xl mb-1">Choose your Pokemon</p>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       {pokemonData ? (
-        <div className="flex bg-amber-400 border-2 border-amber-900 rounded-md mb-2 p-2">
-          <div className="w-24 h-24 bg-amber-200 border-2 border-amber-200 rounded-md my-auto mr-4">
+        <div className="flex flex-col md:flex-row bg-amber-400 border-2 border-amber-900 rounded-md mb-2 p-2">
+          <div className="w-24 h-24 bg-amber-200 border-2 border-amber-200 rounded-md self-center md:self-auto my-auto mb-4 md:mb-0 mr-4">
             <img
               className="h-auto w-auto"
               src={`https://img.pokemondb.net/sprites/black-white/normal/${pokemonData?.name}.png`}
@@ -103,25 +103,24 @@ const Choose = () => {
         </div>
       ) : null}
 
-      <div className="grid grid-cols-3 gap-2 mb-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
         {suggestions?.map((suggestion: any, index: number) => (
           <div
             key={index}
             className="flex button-active items-center h-12 px-4 cursor-pointer"
             onClick={() => getPokemon(suggestion.name)}
           >
-            <div className="w-10 mr-2">
+            <div className="hidden md:block w-10 mr-2 ">
               <img
-                className="h-auto w-auto"
                 src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.name}.png`}
                 alt={suggestion.name}
               />
             </div>
-            <p>{suggestion.name}</p>
+            <p className="text-xs md:text-base">{suggestion.name}</p>
           </div>
         ))}
       </div>
-      <p className="mb-2">
+      <p className="text-xs md:text-base mb-2">
         Can't find the pokemon you're looking for? Search for it below!
       </p>
       <Autocomplete

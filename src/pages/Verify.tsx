@@ -26,7 +26,7 @@ const Verify = () => {
           </Link>
         </p>
       ))}
-      <Button className="mt-auto" text="Confirm" path="/success" />
+      <Button className="mt-4 md:mt-auto" text="Confirm" path="/success" />
     </div>
   );
 };

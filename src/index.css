@@ -19,9 +19,11 @@ code {
   @apply text-orange-900;
 }
 
-.card {
-  min-width: 32rem;
-  min-height: 24rem;
+@media (min-width: 1024px) {
+  .card {
+    min-width: 32rem;
+    min-height: 24rem;
+  }
 }
 
 .button-active {

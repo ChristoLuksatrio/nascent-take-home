@@ -25,7 +25,7 @@ function App() {
   // };
 
   return (
-    <div className="flex flex-col items-center h-screen bg-gray-800 text-white pt-16">
+    <div className="flex flex-col items-center h-screen bg-gray-800 text-white pt-16 px-4">
       <div className="card bg-amber-100 p-4 border-2 border-amber-800 rounded-lg text-black">
         <Routes>
           <Route path="/" element={<Home />} />
