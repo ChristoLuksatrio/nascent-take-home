@@ -31,10 +31,10 @@ export function Infoboard() {
           {data?.getSubmissions.map((submission: any, index: number) => (
             <tr key={index}>
               <td>{submission.firstName}</td>
-              <td>{submission.firstName}</td>
-              <td>{submission.firstName}</td>
-              <td>{submission.firstName}</td>
-              <td>{submission.firstName}</td>
+              <td>{submission.lastName}</td>
+              <td>{submission.phoneNumber}</td>
+              <td>{submission.address}</td>
+              <td>{submission.pokemon}</td>
             </tr>
           ))}
         </tbody>
