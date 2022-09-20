@@ -35,3 +35,15 @@ code {
 .button-disabled {
   @apply text-gray-800 bg-gray-600 border-2 border-gray-800 rounded-md;
 }
+
+.MuiAutocomplete-root {
+  @apply bg-white;
+}
+
+.MuiInputBase-root {
+  font-family: "Press Start 2P", cursive !important;
+}
+
+.MuiAutocomplete-option {
+  font-family: "Press Start 2P", cursive !important;
+}
