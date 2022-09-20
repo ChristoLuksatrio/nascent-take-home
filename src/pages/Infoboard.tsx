@@ -15,7 +15,7 @@ export function Infoboard() {
 
   return (
     <div>
-      <h1>Infoboard</h1>
+      <h1 className="mb-1">Infoboard</h1>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       <table>
         <thead>
