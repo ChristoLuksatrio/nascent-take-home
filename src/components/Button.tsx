@@ -9,7 +9,6 @@ interface ButtonProps {
   disabled?: boolean;
   disableLink?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,7 +18,6 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   disableLink,
   type,
-  onClick,
 }) => {
   const clickSFX = require("../assets/click.mp3");
   const failSFX = require("../assets/fail.mp3");
@@ -43,9 +41,7 @@ const Button: React.FC<ButtonProps> = ({
       to={path || "/"}
       onClick={handleClick}
     >
-      <button onClick={onClick} type={type}>
-        {text}
-      </button>
+      <button type={type}>{text}</button>
     </Link>
   );
 };

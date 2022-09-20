@@ -12,22 +12,41 @@ export default function Registration() {
         pokemon: "",
       };
   const [formInput, setFormInput] = useState(beginningInput);
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
+  const [missingValues, setMissingValues] = useState<any>([]);
+
+  const handleErrorMessage = () => {
+    setMissingValues([]);
+    if (!checkInput) {
+      displayMissingFormValues();
+      setDisplayErrorMessage(true);
+    }
+  };
 
   useEffect(() => {
     window.localStorage.setItem("formInput", JSON.stringify(formInput));
   }, [formInput]);
 
-  const registrationFormInput = Object.values(formInput).slice(0, 4);
+  const formInputValues = Object.values(formInput).slice(0, 4);
+  const formInputKeys = Object.keys(formInput).slice(0, 4);
 
-  const checkInput = Object.values(registrationFormInput).every(
-    (value) => value
-  );
+  const displayMissingFormValues = () => {
+    const missingValueArray: string[] = [];
+    formInputValues.forEach((input, key) => {
+      if (!input) {
+        missingValueArray.push(formInputKeys[key]);
+      }
+    });
+    setMissingValues(missingValueArray);
+  };
+
+  const checkInput = Object.values(formInputValues).every((value) => value);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full max-w-xl">
       <p className="text-xl mb-1">Details</p>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
-      <form className="flex flex-col">
+      <form className="flex flex-col h-full">
         <p>First Name:</p>
         <input
           type="text"
@@ -54,20 +73,26 @@ export default function Registration() {
         />
         <p>Address:</p>
         <input
-          className="mb-4"
+          className="mb-2"
           type="text"
           value={formInput.address}
           onChange={(e) =>
             setFormInput({ ...formInput, address: e.target.value })
           }
         />
-        <Button
-          disabled={!checkInput}
-          type="submit"
-          text="CONTINUE"
-          path="/choose"
-          className="mt-auto"
-        />
+        {displayErrorMessage && missingValues.length > 0 ? (
+          <p className="text-xs mb-4 text-red-600">
+            Missing values: {missingValues.join(", ")}
+          </p>
+        ) : null}
+        <div className="flex flex-col mt-auto" onClick={handleErrorMessage}>
+          <Button
+            disabled={!checkInput}
+            type="submit"
+            text="CONTINUE"
+            path="/choose"
+          />
+        </div>
       </form>
     </div>
   );
