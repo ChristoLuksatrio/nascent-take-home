@@ -19,6 +19,7 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           <Route path="/success" element={<Success />} />
           <Route path="/infoboard" element={<Infoboard />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </div>
     </div>
