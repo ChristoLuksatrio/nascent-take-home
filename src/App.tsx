@@ -7,6 +7,7 @@ import Registration from "./pages/Registration";
 import Choose from "./pages/Choose";
 import Verify from "./pages/Verify";
 import Success from "./pages/Success";
+import { Infoboard } from "./pages/Infoboard";
 
 function App() {
   // const [addSubmission] = useMutation(ADD_SUBMISSION);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/choose" element={<Choose />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/infoboard" element={<Infoboard />} />
         </Routes>
       </div>
     </div>
