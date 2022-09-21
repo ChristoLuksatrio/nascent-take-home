@@ -38,6 +38,7 @@ const Choose = () => {
     try {
       const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=4");
       const data = res?.data?.results;
+      console.log("data is ,", data);
       setSuggestions(data);
     } catch (e) {
       console.log(e);
@@ -67,14 +68,14 @@ const Choose = () => {
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       {pokemonData ? (
         <div className="flex flex-col md:flex-row bg-amber-400 border-2 border-amber-900 rounded-md mb-2 p-2">
-          <div className="w-24 h-24 bg-amber-200 border-2 border-amber-200 rounded-md self-center md:self-auto my-auto mb-4 md:mb-0 mr-4">
+          <div className="w-24 h-24 bg-amber-200 border-2 border-amber-200 rounded-md self-center md:self-auto  my-auto mr-4">
             <img
               className="h-auto w-auto"
               src={`https://img.pokemondb.net/sprites/black-white/normal/${pokemonData?.name}.png`}
               alt={pokemonData?.name}
             />
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-xs">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-xs mt-4 md:mt-0">
             <div>
               <p className="mb-1">Details</p>
               <div className="h-1 w-4 bg-amber-900 mb-2"></div>
