@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
+import PhoneInput from "react-phone-input-2";
 
 export default function Registration() {
   const beginningInput = window.localStorage.getItem("formInput")
@@ -64,11 +65,10 @@ export default function Registration() {
           }
         />
         <p>Phone Number:</p>
-        <input
-          type="text"
+        <PhoneInput
           value={formInput.phoneNumber}
-          onChange={(e) =>
-            setFormInput({ ...formInput, phoneNumber: e.target.value })
+          onChange={(value) =>
+            setFormInput({ ...formInput, phoneNumber: value })
           }
         />
         <p>Address:</p>

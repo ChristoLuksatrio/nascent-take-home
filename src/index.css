@@ -62,3 +62,11 @@ th,
 td {
   @apply border-2 border-amber-900;
 }
+
+.react-tel-input .special-label {
+  @apply hidden;
+}
+
+.react-tel-input .form-control {
+  @apply w-full;
+}
