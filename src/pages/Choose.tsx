@@ -29,17 +29,8 @@ const Choose = () => {
         return { label: data.name };
       });
       setOptions(options);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const getPokemonSuggestions = async () => {
-    try {
-      const res = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=4");
-      const data = res?.data?.results;
-      console.log("data is ,", data);
-      setSuggestions(data);
+      const splicedOptions = options.slice(0, 4);
+      setSuggestions(splicedOptions);
     } catch (e) {
       console.log(e);
     }
@@ -59,7 +50,6 @@ const Choose = () => {
       getPokemon(localStorage.pokemon);
     }
     getPokemonList();
-    getPokemonSuggestions();
   }, []);
 
   return (
@@ -108,16 +98,16 @@ const Choose = () => {
         {suggestions?.map((suggestion: any, index: number) => (
           <Button
             key={index}
-            onClick={() => getPokemon(suggestion.name)}
+            onClick={() => getPokemon(suggestion.label)}
             component={
               <div className="flex items-center">
                 <div className="hidden md:block w-10 mr-2 ">
                   <img
-                    src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.name}.png`}
-                    alt={suggestion.name}
+                    src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.label}.png`}
+                    alt={suggestion.label}
                   />
                 </div>
-                <p className="text-xs md:text-base">{suggestion.name}</p>
+                <p className="text-xs md:text-base">{suggestion.label}</p>
               </div>
             }
           ></Button>
