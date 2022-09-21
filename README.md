@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Nascent Tech Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created for Nascent's Tech Challenge. It is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
