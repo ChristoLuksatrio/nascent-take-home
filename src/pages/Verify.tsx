@@ -32,6 +32,7 @@ const Verify = () => {
     })
       .then(() => {
         setLoading(false);
+        localStorage.removeItem("formInput");
         navigate("/success");
       })
       .catch((e) => {
