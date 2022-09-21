@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import useSound from "use-sound";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { PatternFormat } from "react-number-format";
 
 const Verify = () => {
   const [loading, setLoading] = useState(false);
@@ -51,8 +52,19 @@ const Verify = () => {
       <p className="text-xl mb-1">Please verify your info</p>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
       {Object.keys(formInput).map((key, index) => (
-        <p key={index}>
-          {camelCaseToTitleCase(key)}:{formInput[key]}
+        <p key={index} className="text-sm">
+          {camelCaseToTitleCase(key)}:
+          {key === "phoneNumber" ? (
+            <PatternFormat
+              format="+1 (###)-###-####"
+              allowEmptyFormatting
+              mask="_"
+              displayType="text"
+              value={formInput[key]}
+            />
+          ) : (
+            formInput[key]
+          )}
           <Link
             to={key === "pokemon" ? "/choose" : "/signup"}
             className="ml-2 w-4 inline-block"
