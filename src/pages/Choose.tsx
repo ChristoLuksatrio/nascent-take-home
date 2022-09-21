@@ -105,19 +105,21 @@ const Choose = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
         {suggestions?.map((suggestion: any, index: number) => (
-          <div
+          <Button
             key={index}
-            className="flex button-active items-center h-12 px-4 cursor-pointer"
             onClick={() => getPokemon(suggestion.name)}
-          >
-            <div className="hidden md:block w-10 mr-2 ">
-              <img
-                src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.name}.png`}
-                alt={suggestion.name}
-              />
-            </div>
-            <p className="text-xs md:text-base">{suggestion.name}</p>
-          </div>
+            component={
+              <div className="flex items-center">
+                <div className="hidden md:block w-10 mr-2 ">
+                  <img
+                    src={`https://img.pokemondb.net/sprites/black-white/normal/${suggestion.name}.png`}
+                    alt={suggestion.name}
+                  />
+                </div>
+                <p className="text-xs md:text-base">{suggestion.name}</p>
+              </div>
+            }
+          ></Button>
         ))}
       </div>
       <p className="text-xs md:text-base mb-2">
@@ -133,7 +135,7 @@ const Choose = () => {
       />
       <Button
         disabled={!pokemonData}
-        text="I Choose You!"
+        component="I Choose You!"
         path="/verify"
         className="mt-auto"
       />

@@ -89,7 +89,7 @@ export default function Registration() {
           <Button
             disabled={!checkInput}
             type="submit"
-            text="CONTINUE"
+            component="CONTINUE"
             path="/choose"
           />
         </div>

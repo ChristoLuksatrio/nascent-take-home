@@ -9,7 +9,7 @@ export default function Home() {
         <img className="h-auto w-auto" src={logo} alt="pokeball" />
       </div>
       <h1 className="mb-4">Nascent Pokemon Tech Challenge</h1>
-      <Button className="mb-4" text="START" path="/signup" />
+      <Button className="mb-4" component="START" path="/signup" />
       <em className="text-xs justify-self-end">
         This website was made for Nascent's technical challenge and is purely
         for demonstration purposes only.
