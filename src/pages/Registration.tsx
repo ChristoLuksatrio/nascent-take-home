@@ -14,13 +14,20 @@ export default function Registration() {
       };
   const [formInput, setFormInput] = useState(beginningInput);
   const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
+  const [displayPhoneErrorMessage, setDisplayPhoneErrorMessage] =
+    useState(false);
   const [missingValues, setMissingValues] = useState<any>([]);
 
   const handleErrorMessage = () => {
+    setDisplayErrorMessage(false);
+    setDisplayPhoneErrorMessage(false);
     setMissingValues([]);
     if (!checkInput) {
       displayMissingFormValues();
       setDisplayErrorMessage(true);
+    }
+    if (formInput.phoneNumber.length < 11) {
+      setDisplayPhoneErrorMessage(true);
     }
   };
 
@@ -85,9 +92,12 @@ export default function Registration() {
             Missing values: {missingValues.join(", ")}
           </p>
         ) : null}
+        {displayPhoneErrorMessage ? (
+          <p className="text-xs mb-4 text-red-600">Invalid phone number</p>
+        ) : null}
         <div className="flex flex-col mt-auto" onClick={handleErrorMessage}>
           <Button
-            disabled={!checkInput}
+            disabled={!checkInput || formInput.phoneNumber.length < 11}
             type="submit"
             component="CONTINUE"
             path="/choose"
