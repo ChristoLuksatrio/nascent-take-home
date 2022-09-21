@@ -5,6 +5,7 @@ import { ADD_SUBMISSION } from "../graphql/Mutation";
 import { useMutation } from "@apollo/client";
 import useSound from "use-sound";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const Verify = () => {
   const [loading, setLoading] = useState(false);
@@ -61,9 +62,7 @@ const Verify = () => {
         </p>
       ))}
 
-      <button onClick={submitForm} className="mt-4 md:mt-auto">
-        Confirm
-      </button>
+      <Button onClick={submitForm} className="mt-auto" component="Confirm" />
     </div>
   );
 };

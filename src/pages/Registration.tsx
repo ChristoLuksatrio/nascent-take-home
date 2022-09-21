@@ -46,7 +46,7 @@ export default function Registration() {
     <div className="flex flex-col h-full max-w-xl">
       <p className="text-xl mb-1">Details</p>
       <div className="h-1 w-16 bg-amber-900 mb-4"></div>
-      <form className="flex flex-col h-full">
+      <div className="flex flex-col h-full">
         <p>First Name:</p>
         <input
           type="text"
@@ -93,7 +93,7 @@ export default function Registration() {
             path="/choose"
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
