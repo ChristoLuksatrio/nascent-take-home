@@ -1,6 +1,7 @@
 import React from "react";
 import { GET_SUBMISSIONS } from "../graphql/Query";
 import { useQuery } from "@apollo/client";
+import { PatternFormat } from "react-number-format";
 
 export function Infoboard() {
   const { loading, error, data } = useQuery(GET_SUBMISSIONS);
@@ -32,7 +33,15 @@ export function Infoboard() {
             <tr key={index}>
               <td>{submission.firstName}</td>
               <td>{submission.lastName}</td>
-              <td>{submission.phoneNumber}</td>
+              <td>
+                <PatternFormat
+                  format="+1 (###)-###-####"
+                  allowEmptyFormatting
+                  mask="_"
+                  displayType="text"
+                  value={submission.phoneNumber}
+                />
+              </td>
               <td>{submission.address}</td>
               <td>{submission.pokemon}</td>
             </tr>
